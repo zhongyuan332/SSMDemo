@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edu.ccut.dao.MemberMapper" >
+  <resultMap id="BaseResultMap" type="com.edu.ccut.pojo.Member" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="membername" property="membername" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="schoolid" property="schoolid" jdbcType="INTEGER" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="wallid" property="wallid" jdbcType="INTEGER" />
+    <result column="registedate" property="registedate" jdbcType="TIMESTAMP" />
+    <result column="lastlogindate" property="lastlogindate" jdbcType="TIMESTAMP" />
+    <result column="lastloginip" property="lastloginip" jdbcType="VARCHAR" />
+    <result column="validatecode" property="validatecode" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="r1" property="r1" jdbcType="VARCHAR" />
+    <result column="r2" property="r2" jdbcType="VARCHAR" />
+    <result column="r3" property="r3" jdbcType="VARCHAR" />
+    <result column="r4" property="r4" jdbcType="VARCHAR" />
+    <result column="r5" property="r5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, membername, password, email, schoolid, qq, phone, wallid, registedate, lastlogindate, 
+    lastloginip, validatecode, state, r1, r2, r3, r4, r5
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.edu.ccut.pojo.MemberExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from member
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from member
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.edu.ccut.pojo.MemberExample" >
+    delete from member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.edu.ccut.pojo.Member" >
+    insert into member (id, membername, password, 
+      email, schoolid, qq, 
+      phone, wallid, registedate, 
+      lastlogindate, lastloginip, validatecode, 
+      state, r1, r2, r3, 
+      r4, r5)
+    values (#{id,jdbcType=INTEGER}, #{membername,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{schoolid,jdbcType=INTEGER}, #{qq,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{wallid,jdbcType=INTEGER}, #{registedate,jdbcType=TIMESTAMP}, 
+      #{lastlogindate,jdbcType=TIMESTAMP}, #{lastloginip,jdbcType=VARCHAR}, #{validatecode,jdbcType=VARCHAR}, 
+      #{state,jdbcType=INTEGER}, #{r1,jdbcType=VARCHAR}, #{r2,jdbcType=VARCHAR}, #{r3,jdbcType=VARCHAR}, 
+      #{r4,jdbcType=VARCHAR}, #{r5,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.edu.ccut.pojo.Member" >
+    insert into member
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="membername != null" >
+        membername,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="schoolid != null" >
+        schoolid,
+      </if>
+      <if test="qq != null" >
+        qq,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="wallid != null" >
+        wallid,
+      </if>
+      <if test="registedate != null" >
+        registedate,
+      </if>
+      <if test="lastlogindate != null" >
+        lastlogindate,
+      </if>
+      <if test="lastloginip != null" >
+        lastloginip,
+      </if>
+      <if test="validatecode != null" >
+        validatecode,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="r1 != null" >
+        r1,
+      </if>
+      <if test="r2 != null" >
+        r2,
+      </if>
+      <if test="r3 != null" >
+        r3,
+      </if>
+      <if test="r4 != null" >
+        r4,
+      </if>
+      <if test="r5 != null" >
+        r5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="membername != null" >
+        #{membername,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolid != null" >
+        #{schoolid,jdbcType=INTEGER},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="wallid != null" >
+        #{wallid,jdbcType=INTEGER},
+      </if>
+      <if test="registedate != null" >
+        #{registedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastlogindate != null" >
+        #{lastlogindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastloginip != null" >
+        #{lastloginip,jdbcType=VARCHAR},
+      </if>
+      <if test="validatecode != null" >
+        #{validatecode,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="r1 != null" >
+        #{r1,jdbcType=VARCHAR},
+      </if>
+      <if test="r2 != null" >
+        #{r2,jdbcType=VARCHAR},
+      </if>
+      <if test="r3 != null" >
+        #{r3,jdbcType=VARCHAR},
+      </if>
+      <if test="r4 != null" >
+        #{r4,jdbcType=VARCHAR},
+      </if>
+      <if test="r5 != null" >
+        #{r5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.edu.ccut.pojo.MemberExample" resultType="java.lang.Integer" >
+    select count(*) from member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update member
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.membername != null" >
+        membername = #{record.membername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schoolid != null" >
+        schoolid = #{record.schoolid,jdbcType=INTEGER},
+      </if>
+      <if test="record.qq != null" >
+        qq = #{record.qq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wallid != null" >
+        wallid = #{record.wallid,jdbcType=INTEGER},
+      </if>
+      <if test="record.registedate != null" >
+        registedate = #{record.registedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastlogindate != null" >
+        lastlogindate = #{record.lastlogindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastloginip != null" >
+        lastloginip = #{record.lastloginip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.validatecode != null" >
+        validatecode = #{record.validatecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.r1 != null" >
+        r1 = #{record.r1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.r2 != null" >
+        r2 = #{record.r2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.r3 != null" >
+        r3 = #{record.r3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.r4 != null" >
+        r4 = #{record.r4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.r5 != null" >
+        r5 = #{record.r5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update member
+    set id = #{record.id,jdbcType=INTEGER},
+      membername = #{record.membername,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      schoolid = #{record.schoolid,jdbcType=INTEGER},
+      qq = #{record.qq,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      wallid = #{record.wallid,jdbcType=INTEGER},
+      registedate = #{record.registedate,jdbcType=TIMESTAMP},
+      lastlogindate = #{record.lastlogindate,jdbcType=TIMESTAMP},
+      lastloginip = #{record.lastloginip,jdbcType=VARCHAR},
+      validatecode = #{record.validatecode,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=INTEGER},
+      r1 = #{record.r1,jdbcType=VARCHAR},
+      r2 = #{record.r2,jdbcType=VARCHAR},
+      r3 = #{record.r3,jdbcType=VARCHAR},
+      r4 = #{record.r4,jdbcType=VARCHAR},
+      r5 = #{record.r5,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.edu.ccut.pojo.Member" >
+    update member
+    <set >
+      <if test="membername != null" >
+        membername = #{membername,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolid != null" >
+        schoolid = #{schoolid,jdbcType=INTEGER},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="wallid != null" >
+        wallid = #{wallid,jdbcType=INTEGER},
+      </if>
+      <if test="registedate != null" >
+        registedate = #{registedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastlogindate != null" >
+        lastlogindate = #{lastlogindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastloginip != null" >
+        lastloginip = #{lastloginip,jdbcType=VARCHAR},
+      </if>
+      <if test="validatecode != null" >
+        validatecode = #{validatecode,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="r1 != null" >
+        r1 = #{r1,jdbcType=VARCHAR},
+      </if>
+      <if test="r2 != null" >
+        r2 = #{r2,jdbcType=VARCHAR},
+      </if>
+      <if test="r3 != null" >
+        r3 = #{r3,jdbcType=VARCHAR},
+      </if>
+      <if test="r4 != null" >
+        r4 = #{r4,jdbcType=VARCHAR},
+      </if>
+      <if test="r5 != null" >
+        r5 = #{r5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.edu.ccut.pojo.Member" >
+    update member
+    set membername = #{membername,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      schoolid = #{schoolid,jdbcType=INTEGER},
+      qq = #{qq,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      wallid = #{wallid,jdbcType=INTEGER},
+      registedate = #{registedate,jdbcType=TIMESTAMP},
+      lastlogindate = #{lastlogindate,jdbcType=TIMESTAMP},
+      lastloginip = #{lastloginip,jdbcType=VARCHAR},
+      validatecode = #{validatecode,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      r1 = #{r1,jdbcType=VARCHAR},
+      r2 = #{r2,jdbcType=VARCHAR},
+      r3 = #{r3,jdbcType=VARCHAR},
+      r4 = #{r4,jdbcType=VARCHAR},
+      r5 = #{r5,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
