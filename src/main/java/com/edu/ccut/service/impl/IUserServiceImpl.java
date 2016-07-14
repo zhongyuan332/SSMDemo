@@ -2,6 +2,7 @@ package com.edu.ccut.service.impl;
 
 import com.edu.ccut.dao.MemberMapper;
 import com.edu.ccut.pojo.Member;
+import com.edu.ccut.pojo.User;
 import com.edu.ccut.service.IUserService;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
@@ -25,4 +26,9 @@ public class IUserServiceImpl implements IUserService {
         logger.info("1111111111111111111111111111111111111111111111::"+memberMapper );
         return this.memberMapper.selectByPrimaryKey(userId);
     }
+
+	public boolean login(User user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
