@@ -22,8 +22,7 @@ public class IUserServiceImpl implements IUserService {
 
     @Override
 	public Member getMemberById(int userId) {
-        System.out.println("444444444444444444444444444::" + memberMapper);
-        logger.info("1111111111111111111111111111111111111111111111::"+memberMapper );
+        logger.info(memberMapper );
         return this.memberMapper.selectByPrimaryKey(userId);
     }
 
