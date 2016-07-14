@@ -16,9 +16,9 @@ $(function(){
 	        	}
 	        }},   
 	        {field:'peraccstate',title:'账户状态',width:100,formatter:function(value,row,index){
-	        	if(row.idtype==0){
+	        	if(row.peraccstate==0){
 	        		return '正常';
-	        	}else if(row.idtype==9){
+	        	}else if(row.peraccstate==9){
 	        		return '销户';
 	        	}else {
 	        		return '其他';
@@ -44,6 +44,30 @@ $(function(){
 	    singleSelect:true,
 	    toolbar:'#tb'
 	});  
+	
+	$('#alterperson').dialog({
+		title:'修改个人信息',
+		closed: true,    
+		width:500,
+		toolbar:[{
+			text:'提交修改',
+			iconCls:'icon-edit',
+			handler:function(){
+				$('#altercompany').submit();
+				alert("修改成功");
+				$('#altercompany').dialog("close");
+			}
+		},{
+			text:'取消',
+			iconCls:'icon-clear',
+			handler:function(){
+				$('#altercompany').dialog("close");
+			}
+		}]
+
+	})
+	
+	
 	
 })
 
@@ -77,6 +101,13 @@ function deleteperson(){
 }
 
 function alterperson(){
+	console.log("123");
 	var select = $('#allperson').datagrid('getSelected');
-	
+	$('#alterperson').dialog("open").form('load',{
+		id:select.id,
+		pname:select.pname,
+		idtype:select.idtype,
+		idnum:select.idnum,
+		unitaccnum:select.unitaccnum
+	})
 }

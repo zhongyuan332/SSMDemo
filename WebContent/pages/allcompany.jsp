@@ -9,12 +9,12 @@
 <body>
 	<table id="allcompany"></table>
 	<div id="td">
-		<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="alert('don't click!');">添加</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="addcompany();">添加</a>
 		<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="deletecompany();">销户</a>
 		<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" onclick="altercompany();">修改</a>
 		<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-reload',plain:true" onclick="reload();">刷新</a>
 	</div>
-	<form action="" method="post" id="altercompany">
+	<form action="/touch/company/altercompany" method="post" id="altercompany">
 		<input type="hidden" name="id">
 		 单位名称：<input type="text" name="unitaccname"><br>
 		 单位类别：<select name="unitchar" >

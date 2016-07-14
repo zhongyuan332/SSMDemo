@@ -93,4 +93,15 @@ public class PersonController {
 		 }
 		 return map;
 	 }
+	 
+	 @RequestMapping("/alterperson")
+	 public String alterPerson(Person p){
+		 Person person = personService.getPerson(p.getId());
+		 person.setPname(p.getPname());
+		 person.setIdtype(p.getIdtype());
+		 person.setIdnum(p.getIdnum());
+		 personService.updatePerson(person);
+		 return "main";
+	 }
+	 
 }

@@ -80,6 +80,8 @@ $(function(){
 			iconCls:'icon-edit',
 			handler:function(){
 				$('#altercompany').submit();
+				alert("修改成功");
+				$('#altercompany').dialog("close");
 			}
 		},{
 			text:'取消',
@@ -125,7 +127,6 @@ function deletecompany(){
 
 function altercompany(){
 	var select = $('#allcompany').datagrid('getSelected');
-	console.log("111111:"+select.unitchar);
 	$('#altercompany').dialog("open").form('load',{
 		id:select.id,
 		unitaccname:select.unitaccname,

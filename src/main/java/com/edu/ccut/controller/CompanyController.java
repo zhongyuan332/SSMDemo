@@ -41,7 +41,7 @@ public class CompanyController {
 			logger.info(c.getUnitchar());
 			companyService.saveCompany(c);
 		}
-		return "success";
+		return "main";
 	}
 	
 	/**
@@ -73,4 +73,20 @@ public class CompanyController {
 		return map;
 	}
 	
+	@RequestMapping("/altercompany")
+	public String alterCompany(Company c){
+		logger.info(c);
+		Company company = companyService.getCompany(c.getId());
+		company.setUnitaccname(c.getUnitaccname());
+		company.setUnitchar(c.getUnitchar());
+		company.setUnitkind(c.getUnitkind());
+		company.setSalarydate(c.getSalarydate());
+		company.setUnitphone(c.getUnitphone());
+		company.setUnitlinkman(c.getUnitlinkman());
+		company.setUnitagentpapno(c.getUnitagentpapno());
+		company.setUnitprop(c.getUnitprop());
+		company.setPerprop(c.getPerprop());
+		boolean flag = companyService.updateCompany(company);
+		return "main";
+	}
 }

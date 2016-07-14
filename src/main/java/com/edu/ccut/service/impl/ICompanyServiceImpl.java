@@ -37,13 +37,13 @@ public class ICompanyServiceImpl implements ICompanyService {
 		String r = String.format("%06d", seq);
 		Long r1 = (long) (Math.random()*100000);
 		String unitaccnum = "c" + r + Long.toString(r1);
+		logger.info("r1:"+r1);
 		logger.info(unitaccnum+":***----***:"+unitaccnum.length());
 		c.setOrgcode(Long.toString(r1));
 		c.setUnitaccnum(unitaccnum);
 		Date date = new Date();
 		c.setCreatedate(date);
 		s.setSeq(seq+1);
-		logger.info(c.getAccstate());
 		systemseqMapper.updateByPrimaryKeySelective(s);
 		int flag = companyMapper.insert(c);
 		if(flag>0){
