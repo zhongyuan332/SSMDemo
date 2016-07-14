@@ -11,6 +11,6 @@ import com.edu.ccut.pojo.Person;
 public interface IPersonService {
 	public boolean savePerson(Person p);
 	public List<Person> getAllPerson();
-	public boolean delPerson(Person p);
+	public boolean updatePerson(Person p);
 	public Person getPerson(Integer id);
 }

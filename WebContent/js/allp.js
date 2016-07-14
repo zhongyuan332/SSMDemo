@@ -15,6 +15,15 @@ $(function(){
 	        		return '其他';
 	        	}
 	        }},   
+	        {field:'peraccstate',title:'账户状态',width:100,formatter:function(value,row,index){
+	        	if(row.idtype==0){
+	        		return '正常';
+	        	}else if(row.idtype==9){
+	        		return '销户';
+	        	}else {
+	        		return '其他';
+	        	}
+	        }}, 
 	        {field:'idnum',title:'证件号码',width:100},
 	        {field:'accnum',title:'个人公积金账号',width:100},
 	        {field:'unitaccnum',title:'单位公积金账号',width:100},   
@@ -28,7 +37,8 @@ $(function(){
 	        {field:'permonpaysum',title:'个人月应缴额',width:100},
 	        {field:'ypayamt',title:'本年汇补缴额',width:100},
 	        {field:'ydrawamt',title:'本年度提取额',width:100},
-	        {field:'yinterestbal',title:'年度结息',width:100}
+	        {field:'yinterestbal',title:'年度结息',width:100},
+	        {field:'remark',title:'备注',width:100}
 	    ]],
 	    rownumbers:true,
 	    singleSelect:true,
@@ -52,7 +62,10 @@ function deleteperson(){
 				id:select.id,
 			},
 			success:function(data){
-				alert("删除成功");
+				//console.log(data);
+				if(data.flag){
+					alert("删除成功");
+				}
 				$('#allperson').datagrid('reload');
 			},
 			error:function(XMLHttpRequest, textStatus, errorThrown){
@@ -61,4 +74,9 @@ function deleteperson(){
 			}
 		})
 	}
+}
+
+function alterperson(){
+	var select = $('#allperson').datagrid('getSelected');
+	
 }

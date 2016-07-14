@@ -15,11 +15,21 @@
 	<div region="north" title="North Title" split="true" style="height:200px;"></div>
 	<div region="west" split="true" title="West" style="width:200px;">
 	欢迎您：${username }
-		<ul style="">
-			<li><a href="javascript:void(0)" onclick="addperson();">个人开户</a></li>
-			<li><a href="javascript:void(0)" onclick="addcompany();">企业开户</a></li>
-			<li><a href="javascript:void(0)" onclick="seeperson();">查看所有个人用户</a></li>
-			<li><a href="javascript:void(0)" onclick="seecompany();">查看所有企业用户</a></li>
+		<ul class="easyui-tree">
+			<li>
+				<span>开户页面</span>
+				<ul>
+					<li><a href="javascript:void(0)" onclick="addperson();">个人开户</a></li>
+					<li><a href="javascript:void(0)" onclick="addcompany();">企业开户</a></li>
+				</ul>
+			</li>
+			<li>
+				<span>查看页面</span>
+				<ul>
+					<li><a href="javascript:void(0)" onclick="seeperson();">查看所有个人用户</a></li>
+					<li><a href="javascript:void(0)" onclick="seecompany();">查看所有企业用户</a></li>
+				</ul>
+			</li>
 		</ul>
 	</div>
 	<div region="center" title="center title" style="padding:5px;background:#eee;" id="main" class="easyui-tabs"></div>

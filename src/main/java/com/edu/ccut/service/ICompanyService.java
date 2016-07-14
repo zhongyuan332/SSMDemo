@@ -12,4 +12,6 @@ public interface ICompanyService {
 	public boolean saveCompany(Company c);
 	public List<Company> getAllCompany();
 	public boolean isHaveCompany(String unitaccnum);
+	public Company getCompany(Integer id);
+	public boolean updateCompany(Company c);
 }

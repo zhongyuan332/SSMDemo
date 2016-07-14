@@ -29,12 +29,12 @@ public class UserController {
 	public String login(User user,HttpServletRequest request,Model model){
 		boolean flag = userService.login(user);
 		logger.info(user.getUsername());
-		logger.info(flag);
+		logger.info(user.getPassword());
 		if(flag){
 			request.getSession().setAttribute("username", user.getUsername());
 			return "main";
 		}else{
-			return "fail";
+			return "";
 		}
 	} 
 }

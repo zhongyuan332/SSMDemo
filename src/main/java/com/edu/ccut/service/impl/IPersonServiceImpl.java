@@ -81,7 +81,7 @@ public class IPersonServiceImpl implements IPersonService {
 	}
 
 	@Override
-	public boolean delPerson(Person p) {
+	public boolean updatePerson(Person p) {
 		// TODO Auto-generated method stub
 		int flag = personMapper.updateByPrimaryKey(p);
 		if(flag>0){

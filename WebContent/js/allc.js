@@ -19,7 +19,31 @@ $(function(){
 	        		return '其他';
 	        	}
 	        }},   
-	        {field:'unitkind',title:'企业类型',width:100},   
+	        {field:'unitkind',title:'企业类型',width:100,formatter:function(value,row,index){
+	        	if(value==110){
+	        		return '国有经济';
+	        	}else if(value==120){
+	        		return '集体经济';
+	        	}else if(value == 130){
+	        		return '股份合作企业';
+	        	}else if(value == 140){
+	        		return '联营企业';
+	        	}else if(value == 150){
+	        		return '有限责任公司';
+	        	}else if(value == 160){
+	        		return '股份有限公司';
+	        	}else if(value == 170){
+	        		return '私营企业';
+	        	}else if(value == 190){
+	        		return '其他企业';
+	        	}else if(value == 200){
+	        		return '港澳台商投资企业';
+	        	}else if(value == 900){
+	        		return '其他';
+	        	}else {
+	        		return '还有吗？';
+	        	}
+	        }},   
 	        {field:'salarydate',title:'发薪日期',width:100}, 
 	        {field:'unitphone',title:'联系电话',width:100}, 
 	        {field:'unitlinkman',title:'单位联系人',width:100}, 
@@ -47,30 +71,81 @@ $(function(){
 	    toolbar:'#td'
 	});  
 	
+	$('#altercompany').dialog({
+		title:'修改单位信息',
+		closed: true,    
+		width:500,
+		toolbar:[{
+			text:'提交修改',
+			iconCls:'icon-edit',
+			handler:function(){
+				$('#altercompany').submit();
+			}
+		},{
+			text:'取消',
+			iconCls:'icon-clear',
+			handler:function(){
+				$('#altercompany').dialog("close");
+			}
+		}]
+
+	})
+	
+	
+	
 })
 
 function reload(){
-	$('#allperson').datagrid('reload');
+	$('#allcompany').datagrid('reload');
 }
 
-function deleteperson(){
-	var select = $('#allperson').datagrid('getSelected');
+function deletecompany(){
+	var select = $('#allcompany').datagrid('getSelected');
 	if(confirm('确定要删除当前行？')){
 		$.ajax({
-			url:'/touch/person/delperson',
+			url:'/touch/company/delcompany',
 			type:'post',
 			dataType:'json',
 			data:{
 				id:select.id,
 			},
 			success:function(data){
-				alert("删除成功");
-				$('#allperson').datagrid('reload');
+				//console.log();
+				if(data.flag){
+					alert("删除成功");
+				}
+				$('#allcompany').datagrid('reload');
 			},
 			error:function(XMLHttpRequest, textStatus, errorThrown){
 				this;
-				
 			}
 		})
 	}
 }
+
+function altercompany(){
+	var select = $('#allcompany').datagrid('getSelected');
+	console.log("111111:"+select.unitchar);
+	$('#altercompany').dialog("open").form('load',{
+		id:select.id,
+		unitaccname:select.unitaccname,
+		unitchar:select.unitchar,
+		unitkind:select.unitkind,
+		salarydate:select.salarydate,
+		unitphone:select.unitphone,
+		unitlinkman:select.unitlinkman,
+		unitagentpapno:select.unitagentpapno,
+		unitprop:select.unitprop,
+		perprop:select.perprop,
+	})
+}
+
+
+
+
+
+
+
+
+
+

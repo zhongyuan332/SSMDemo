@@ -7,8 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<script type="text/javascript" src="../js/jquery.min.js"></script>
-	<form action="/touch/person/saveperson" method="post">
+	<form action="/touch/person/saveperson" method="post" id="saveperson">
 		<table style="" align="center">
 			<thead>
 				<tr>
@@ -18,7 +17,7 @@
 			<tbody>
 			<tr>
 				<td>姓名：</td>
-				<td><input type="text" name="pname" id="name"></td>
+				<td><input type="text" name="pname" id="name" ></td>
 			</tr>
 			<tr>
 				<td>身份证号码：</td>
@@ -57,7 +56,7 @@
 			},
 			success:function(date){
 				if(date.company){
-					ok3 = true;
+					ok4 = true;
 				}else{
 					alert("没有此公司");
 				}
@@ -65,26 +64,33 @@
 		})
 	})
 	
-	$('')
+	$('#name').validatebox({
+		 required: true,
+		 missingMessage:"请输入2-5位姓名",
+		 validType:'length[2,5]',
+	})
 	
+	$('#idnum').validatebox({
+		 required: true,
+		 missingMessage:"请输入18位身份证号",
+		 validType:'length[18,18]',
+	})	
+	 $('#unitaccnum').validatebox({
+		 required: true,
+		 missingMessage:"请输入单位公积金账号！",
+	})
+	$('#basenumber').validatebox({
+		 required: true,
+		 missingMessage:"请输入缴存基数！",
+	})
 	function checkout1(){
-		console.log("1111111111111111");
-		var name = $("#name").val();
-		var idnum = $("#idnum").val();
-		var unitaccnum = $("#unitaccnum").val();
-		var basenumber = $("#basenumber").val();
-		
-		if(name != null&&name!=""){
-			ok1=true;
-		}
-		if(basenumber != null||basenumber!=""){
-			ok2=true;
-		}
-		console.log("333333333333333"+name);
-		console.log("333333333333333"+idnum);
-		
-		if(ok1&&ok2&&ok3){
-			
+		var ok1 = $('#name').validatebox("isValid");
+		var ok2 = $('#idnum').validatebox("isValid");
+		var ok3 = $('#unitaccnum').validatebox("isValid");
+		var ok5 = $('#basenumber').validatebox("isValid");
+		console.log(ok2);
+		if(ok1&&ok2&&ok3&&ok4&&ok5){
+			$('#saveperson').submit();
 		}
 	}
 	

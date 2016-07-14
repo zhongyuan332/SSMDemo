@@ -71,4 +71,21 @@ public class ICompanyServiceImpl implements ICompanyService {
 		}
 	}
 
+	@Override
+	public boolean updateCompany(Company c) {
+		// TODO Auto-generated method stub
+		int flag = companyMapper.updateByPrimaryKey(c);
+		if(flag>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Company getCompany(Integer id) {
+		// TODO Auto-generated method stub
+		return companyMapper.selectByPrimaryKey(id);
+	}
+
 }

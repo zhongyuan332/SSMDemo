@@ -1,6 +1,8 @@
 package com.edu.ccut.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +28,12 @@ public class CompanyController {
 	@Resource
 	private ICompanyService companyService; 
 	
+	/**
+	 * 公司开户
+	 * @param c
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/savecompany")
 	public String saveCompany(Company c,HttpServletRequest request){
 		logger.info(c);
@@ -36,6 +44,10 @@ public class CompanyController {
 		return "success";
 	}
 	
+	/**
+	 * 获取所有公司列表
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("/allcompany")
 	public List<Company> getAllCompany(){
@@ -43,4 +55,22 @@ public class CompanyController {
 		logger.info(list);
 		return list;
 	}
+	
+	/**
+	 * 公司销户
+	 * @param id
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/delcompany")
+	public Map delCompany(Integer id){
+		logger.info(id);
+		Company c = companyService.getCompany(id);
+		c.setAccstate(9);
+		boolean flag = companyService.updateCompany(c);
+		Map<String, Boolean> map = new HashMap<String, Boolean>();
+		map.put("flag", flag);
+		return map;
+	}
+	
 }
