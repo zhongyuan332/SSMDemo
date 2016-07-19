@@ -101,7 +101,7 @@ function deleteperson(){
 }
 
 function alterperson(){
-	console.log("123");
+	
 	var select = $('#allperson').datagrid('getSelected');
 	$('#alterperson').dialog("open").form('load',{
 		id:select.id,
