@@ -103,7 +103,8 @@ function reload(){
 
 function deletecompany(){
 	var select = $('#allcompany').datagrid('getSelected');
-	if(confirm('确定要删除当前行？')){
+	var flag = select.accstate;
+	if(confirm('确定要删除当前行？')&&flag == 0){
 		$.ajax({
 			url:'/touch/company/delcompany',
 			type:'post',
@@ -122,23 +123,31 @@ function deletecompany(){
 				this;
 			}
 		})
+	}else{
+		alert("该用户已为销户状态");
 	}
 }
 
 function altercompany(){
 	var select = $('#allcompany').datagrid('getSelected');
-	$('#altercompany').dialog("open").form('load',{
-		id:select.id,
-		unitaccname:select.unitaccname,
-		unitchar:select.unitchar,
-		unitkind:select.unitkind,
-		salarydate:select.salarydate,
-		unitphone:select.unitphone,
-		unitlinkman:select.unitlinkman,
-		unitagentpapno:select.unitagentpapno,
-		unitprop:select.unitprop,
-		perprop:select.perprop,
-	})
+	var flag = select.accstate;
+	if(flag == 9){
+		alert("销户状态无法修改！");
+	}else{
+		$('#altercompany').dialog("open").form('load',{
+			id:select.id,
+			unitaccname:select.unitaccname,
+			unitchar:select.unitchar,
+			unitkind:select.unitkind,
+			salarydate:select.salarydate,
+			unitphone:select.unitphone,
+			unitlinkman:select.unitlinkman,
+			unitagentpapno:select.unitagentpapno,
+			unitprop:select.unitprop,
+			perprop:select.perprop,
+		})
+	}
+	
 }
 
 

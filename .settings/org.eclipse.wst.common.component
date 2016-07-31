@@ -4,6 +4,8 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/iOS"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/android"/>
         <property name="context-root" value="touch"/>
         <property name="java-output-path" value="/touch/target/classes"/>
     </wb-module>

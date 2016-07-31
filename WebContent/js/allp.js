@@ -77,7 +77,8 @@ function reload(){
 
 function deleteperson(){
 	var select = $('#allperson').datagrid('getSelected');
-	if(confirm('确定要删除当前行？')){
+	var flag = select.peraccstate;
+	if(confirm('确定要删除当前行？')&&flag == 0){
 		$.ajax({
 			url:'/touch/person/delperson',
 			type:'post',
@@ -97,17 +98,24 @@ function deleteperson(){
 				
 			}
 		})
+	}else {
+		alert("该用户已为销户状态");
 	}
 }
 
 function alterperson(){
-	
 	var select = $('#allperson').datagrid('getSelected');
-	$('#alterperson').dialog("open").form('load',{
-		id:select.id,
-		pname:select.pname,
-		idtype:select.idtype,
-		idnum:select.idnum,
-		unitaccnum:select.unitaccnum
-	})
+	flag = select.peraccstate;
+	if(flag == 0){
+		$('#alterperson').dialog("open").form('load',{
+			id:select.id,
+			pname:select.pname,
+			idtype:select.idtype,
+			idnum:select.idnum,
+			unitaccnum:select.unitaccnum
+		})
+	}else {
+		alert("已为销户状态，不能进行修改 ");
+	}
+	
 }
