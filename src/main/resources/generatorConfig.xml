@@ -51,7 +51,19 @@
 
 		<!-- 指定数据库表 -->
 
-		<table tableName="comment" enableCountByExample="false"
+		<table tableName="focus" enableCountByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			enableUpdateByExample="false">
+		</table>
+		<table tableName="laud" enableCountByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			enableUpdateByExample="false">
+		</table>
+		<table tableName="member" enableCountByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			enableUpdateByExample="false">
+		</table>
+		<table tableName="messageimg" enableCountByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			enableUpdateByExample="false">
 		</table>
