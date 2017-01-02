@@ -51,21 +51,19 @@
 
 		<!-- 指定数据库表 -->
 
-		<table tableName="focus" enableCountByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="focus" 
+			enableDeleteByExample="false" 
 			enableUpdateByExample="false">
 		</table>
-		<table tableName="laud" enableCountByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="laud" 
+			enableDeleteByExample="false" 
 			enableUpdateByExample="false">
 		</table>
-		<table tableName="member" enableCountByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
+		<table tableName="member" 
+			enableDeleteByExample="false"
 			enableUpdateByExample="false">
 		</table>
-		<table tableName="messageimg" enableCountByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
-			enableUpdateByExample="false">
+		<table tableName="messageimg" >
 		</table>
 		<!-- 有些表的字段需要指定java类型 <table schema="" tableName=""> <columnOverride column="" 
 			javaType="" /> </table> <table tableName="member"></table> -->
