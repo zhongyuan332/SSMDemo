@@ -1,8 +1,11 @@
 package com.edu.ccut.service;
 
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.edu.ccut.pojo.Messageimg;
+import com.edu.ccut.pojo.MessageimgExample;
 
 /**
  *@author zhongyuan
@@ -10,4 +13,5 @@ import com.edu.ccut.pojo.Messageimg;
  */
 public interface IMessageImgService {
 	public boolean uploadMessageIMG(MultipartFile imgFile , Messageimg messageimg);
+	public List<Messageimg> getAllMessageImg(MessageimgExample messageimgExample);
 }
