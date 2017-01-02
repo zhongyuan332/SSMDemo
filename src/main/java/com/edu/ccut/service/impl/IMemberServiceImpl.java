@@ -34,9 +34,9 @@ public class IMemberServiceImpl implements IMemberService {
 		member.setCreatedate(new Date());
 		member.setState(0);
 		member.setLevel(0);
-		member.setEmail(member.getUsername());
+		member.setEmail(member.getEmail());
 		member.setCipher(MD5Util.getMD5Code(member.getCipher()));
-		member.setValidatecode(MD5Util.encode2hex(member.getUsername()));
+		member.setValidatecode(MD5Util.encode2hex(member.getEmail()));
 
 		 ///邮件的内容
         StringBuffer sb=new StringBuffer("点击下面链接激活账号，24小时生效，否则重新注册账号，链接只能使用一次，请尽快激活！<br>");
