@@ -4,7 +4,7 @@
     <c:set var="root" value="${pageContext.request.contextPath}" scope="application"></c:set>
     <script type="text/javascript"> 
 		var basePath = "${root}"; 
-		var adminPath = basePath+"/action/admin"
+		var adminPath = basePath+"/pages"
 	</script>
     <link id="easyuiTheme" rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.4.3/themes/default/easyui.css"/>  
     <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.4.3/themes/icon.css"/>  
