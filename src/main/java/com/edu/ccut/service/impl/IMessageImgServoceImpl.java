@@ -41,7 +41,6 @@ public class IMessageImgServoceImpl implements IMessageImgService {
 
 	@Override
 	public List<Messageimg> getAllMessageImg(MessageimgExample messageimgExample) {
-		// TODO Auto-generated method stub
 		List<Messageimg> list = messageMapper.selectByExample(messageimgExample);
 		return list;
 	}

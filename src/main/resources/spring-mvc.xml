@@ -51,7 +51,21 @@
               <property name="maxInMemorySize" value="40960" />
        </bean>
 
-	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+ 	 <!-- 注意其他配置 -->
+	  <property name="plugins">
+	    <array>
+	      <bean class="com.github.pagehelper.PageInterceptor">
+	        <property name="properties">
+	          <!--使用下面的方式配置参数，一行配置一个 -->
+	          <value>
+	            params=value1
+	          </value>
+	        </property>
+	      </bean>
+	    </array>
+	  </property>
+	</bean>
 	<bean id="serviceAspect" class="com.edu.ccut.util.aop.*"/>
 	<!-- AOP配置 --> 
 	<aop:aspectj-autoproxy proxy-target-class="true" /> 
