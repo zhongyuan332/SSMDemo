@@ -81,6 +81,14 @@ public class IMemberServiceImpl implements IMemberService {
 			return false;
 		}
 	}
+
+	@Override
+	public Integer addMember(Member member) {
+		// TODO Auto-generated method stub
+		Integer flag = memberDao.insert(member);
+		logger.info("222222222222222222222222222222:::"+flag);
+		return flag;
+	}
 	
 	
 }

@@ -52,7 +52,7 @@
        </bean>
 
 	
-	<bean id="serviceAspect" class="com.edu.ccut.util.aop.*"/>
+	<bean id="serviceAspect" class="com.edu.ccut.util.aop.LogServiceAop"/>
 	<!-- AOP配置 --> 
 	<aop:aspectj-autoproxy proxy-target-class="true" /> 
 </beans>

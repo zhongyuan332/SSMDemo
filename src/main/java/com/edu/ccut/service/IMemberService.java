@@ -11,4 +11,5 @@ import com.edu.ccut.pojo.Member;
 public interface IMemberService {
 	public boolean saveMember(Member member);
 	public boolean validateMember(Member member);
+	public Integer addMember(Member member);
 }
