@@ -15,6 +15,7 @@ import com.edu.ccut.pojo.Messageimg;
 import com.edu.ccut.pojo.MessageimgExample;
 import com.edu.ccut.service.IMessageImgService;
 import com.edu.ccut.util.FileUpLoad;
+import com.github.pagehelper.PageHelper;
 
 /**
  *@author zhongyuan
@@ -45,4 +46,9 @@ public class IMessageImgServoceImpl implements IMessageImgService {
 		return list;
 	}
 	
+	public List<Messageimg> getMessageImgByPage(MessageimgExample messageimgExample,Integer pageNum,Integer pageSize){
+		PageHelper.startPage(pageSize, pageNum);
+		List<Messageimg> list = messageMapper.selectByExample(messageimgExample);
+		return list;
+	}
 }
